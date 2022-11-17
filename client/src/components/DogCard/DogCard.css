@@ -1,0 +1,14 @@
+.imgDog {
+    width: 100px;
+    height: 200px;
+    padding-top: 10px;
+}
+.CardDog {
+    border: solid 2px rgb(195, 53, 53);
+    position: relative;
+    align-items: center;
+    height: 400px;
+    width: 300px;
+    border-radius: 5px;
+    background-color: #d22d2d8f;
+}

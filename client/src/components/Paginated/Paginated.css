@@ -1,0 +1,37 @@
+.Paginated,
+li {
+    display: inline-block;
+    padding: 3px;
+}
+
+.List_Number {
+    display: inline;
+    margin: 0;
+}
+
+.page_number_selected {
+    color: rgb(0, 0, 0);
+    float: left;
+    margin: 0;
+    border-radius: 5px;
+    padding: 8px 16px;
+    text-decoration: none;
+    background-color: rgba(rgb(255, 255, 255), green, blue, alpha);
+}
+
+.page_number {
+    color: #fff;
+    float: left;
+    margin: 0;
+    border-radius: 5px;
+    padding: 8px 16px;
+    text-decoration: none;
+    background-color: rgb(70, 210, 5);
+}
+
+.page_number:hover:not(.active) {
+    border: 1px solid #000;
+    color: #000;
+    background-color: rgb(241, 42, 7);
+
+}
