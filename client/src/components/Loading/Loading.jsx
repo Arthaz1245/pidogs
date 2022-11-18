@@ -1,9 +1,11 @@
 import React from "react";
-import "./Loading.css";
+import img from "../../images/loading-dog.gif";
+
 export default function Loading() {
   return (
-    <div className="pokebola">
-      <div className="pokebola-botao"></div>
+    <div className="positionloading">
+      <img src={img} alt="Loading.." className="imgLoading" />
+      <p className="LoadingTxt">Loading...</p>
     </div>
   );
 }

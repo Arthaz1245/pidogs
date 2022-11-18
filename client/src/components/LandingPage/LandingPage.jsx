@@ -6,7 +6,15 @@ export default function LandingPage() {
     <div>
       <h1 className="titleLanding"> Welcome. Are you Ready</h1>
       <Link to="/home">
-        <button className="mainMenuButton">Enter</button>
+        <button class="bone">
+          <div class="c1"></div>
+          <div class="c2"></div>
+          <div class="c3"></div>
+          <div class="c4"></div>
+          <div class="b1">
+            <div class="b2">Enter</div>
+          </div>
+        </button>
       </Link>
     </div>
   );

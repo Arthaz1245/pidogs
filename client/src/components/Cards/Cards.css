@@ -1,0 +1,11 @@
+.recipeCards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    
+    border-radius: 10px;
+    padding: 40px;
+    gap: 10px;
+}

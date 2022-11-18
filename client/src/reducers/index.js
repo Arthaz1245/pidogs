@@ -9,6 +9,7 @@ import {
   GET_BREEDS_DETAILS,
   CLEAN_BREEDS_DETAILS,
   CREATE_NEW_BREED,
+  ORDER_BY_WEIGHT,
 } from "../actions/actions";
 
 const initialState = {
@@ -54,6 +55,20 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         breeds: action.payload,
+      };
+    }
+    case ORDER_BY_WEIGHT: {
+      const orderByWeight =
+        action.payload === "asc"
+          ? state.breeds.sort(function (a, b) {
+              return parseInt(a.min_weight) - parseInt(b.max_weight);
+            })
+          : state.breeds.sort(function (a, b) {
+              return parseInt(b.max_weight) - parseInt(a.min_weight);
+            });
+      return {
+        ...state,
+        breeds: orderByWeight,
       };
     }
     case ORDER_BREEDS_ALPHABETICALLY: {

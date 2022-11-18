@@ -1,0 +1,32 @@
+.cardImage {
+    height: 60%;
+    max-height: 200px;
+    width: 60%;
+    max-width: 400px;
+    box-shadow: 30px 40px 15px 0px #121212;
+}
+.allTemps {
+    display: inline-flex;
+    font-size: medium;
+    padding: 5;
+    margin: 50px;
+    border-radius: 10%;
+    color: #fff;
+    background-color: rgba(53, 44, 43, 0.705);
+}
+.cardDetail{
+background-color: rgba(44, 155, 253, 0.758);
+position: absolute;
+top: 25%;
+left: 40%;
+border-radius: 25%;
+height: 500;
+ width: 400;
+}
+.table2{
+  position: absolute;
+  display: inline-flex;
+}
+.eachTemperament{
+    padding: 10px;
+}

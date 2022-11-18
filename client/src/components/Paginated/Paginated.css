@@ -22,7 +22,7 @@ li {
 .page_number {
     color: #fff;
     float: left;
-    margin: 0;
+    margin: 5px;
     border-radius: 5px;
     padding: 8px 16px;
     text-decoration: none;

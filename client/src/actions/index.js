@@ -9,6 +9,7 @@ import {
   FILTER_BREEDS_CREATED,
   GET_BREEDS_DETAILS,
   CLEAN_BREEDS_DETAILS,
+  ORDER_BY_WEIGHT,
 } from "./actions";
 
 export function getAllBreeds() {
@@ -33,6 +34,12 @@ export function filterBreedsByTemperament(payload) {
 export function orderBreedsAlphabetically(payload) {
   return {
     type: ORDER_BREEDS_ALPHABETICALLY,
+    payload,
+  };
+}
+export function orderByWeight(payload) {
+  return {
+    type: ORDER_BY_WEIGHT,
     payload,
   };
 }

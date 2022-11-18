@@ -7,6 +7,7 @@ import {
   getAllTemperaments,
   filterBreedsByTemperament,
   filterBreedsCreated,
+  orderByWeight,
 } from "../../actions";
 export default function Filters({ setCurrentPage, setOrder, order }) {
   const dispatch = useDispatch();
@@ -17,6 +18,13 @@ export default function Filters({ setCurrentPage, setOrder, order }) {
   const handleOrderBreedsAlphabetically = (e) => {
     e.preventDefault();
     dispatch(orderBreedsAlphabetically(e.target.value));
+    setCurrentPage(1);
+    setOrder(e.target.value);
+    console.log(order);
+  };
+  const handleOrderBreedsByWeight = (e) => {
+    e.preventDefault();
+    dispatch(orderByWeight(e.target.value));
     setCurrentPage(1);
     setOrder(e.target.value);
     console.log(order);
@@ -39,22 +47,49 @@ export default function Filters({ setCurrentPage, setOrder, order }) {
         onChange={(e) => {
           handleOrderBreedsAlphabetically(e);
         }}
+        className="selectFilter"
       >
-        <option value="default" disabled="disabled">
-          Order
+        <option value="default" className="selectFilter" disabled="disabled">
+          Order alphabetically
         </option>
         <option value="asc">A-Z</option>
         <option value="desc">Z-A</option>
       </select>
       <select
         onChange={(e) => {
+          handleOrderBreedsByWeight(e);
+        }}
+        className="selectFilter"
+      >
+        <option value="default" disabled="disabled">
+          Order by weight
+        </option>
+        <option value="asc" className="selectFilter">
+          min weight
+        </option>
+        <option value="desc" className="selectFilter">
+          max weight
+        </option>
+      </select>
+      <select
+        className="selectFilter"
+        onChange={(e) => {
           handleFilterBreedsByTemperament(e);
         }}
       >
-        <option value="all">all</option>
+        <option value="default" className="selectFilter" disabled="disabled">
+          Select temperament
+        </option>
+        <option value="all" className="selectFilter">
+          all
+        </option>
         {allTemperaments?.map((temperament) => {
           return (
-            <option value={temperament.name} key={temperament.id}>
+            <option
+              className="selectFilter"
+              value={temperament.name}
+              key={temperament.id}
+            >
               {temperament.name.toLowerCase()}
             </option>
           );
@@ -64,6 +99,7 @@ export default function Filters({ setCurrentPage, setOrder, order }) {
         onChange={(e) => {
           handleFilterBreedsCreated(e);
         }}
+        className="selectFilter"
       >
         <option value="all">all</option>
         <option value="created">created</option>

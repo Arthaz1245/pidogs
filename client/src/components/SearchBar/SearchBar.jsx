@@ -20,6 +20,7 @@ export default function SearchBar() {
   return (
     <div>
       <form
+        className="form-search"
         onSubmit={(e) => {
           handleSubmit(e);
         }}
@@ -27,6 +28,7 @@ export default function SearchBar() {
         <input
           type="text"
           placeholder="Search breed..."
+          className="searchBar"
           onChange={(e) => {
             handleInputChange(e);
           }}

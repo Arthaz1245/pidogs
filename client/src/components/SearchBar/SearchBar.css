@@ -1,0 +1,15 @@
+.searchBar{
+
+        border: none;
+        /* max-width: 80%; */
+       
+        height: 25px;
+        border-radius: 20px 0px 0px 20px;
+        background-color: rgba(90, 255, 19, 0.774);
+        font-size: 14px;
+        margin: 15px;
+        
+}
+.form-search{
+    align-items: center;
+}

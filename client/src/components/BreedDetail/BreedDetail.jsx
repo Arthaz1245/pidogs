@@ -20,17 +20,17 @@ export default function BreedDetail(props) {
       {Object.values(breedDetails).length !== 0 ? (
         <div className="cardDetail">
           <h2>{breedDetails.name}</h2>
-          <img src={breedDetails.image} alt="" />
-          <div>
+          <img src={breedDetails.image} className="cardImage" alt="" />
+          <div className="allTemps">
             {breedDetails.temperaments?.map((t, k) => {
               return (
                 <div key={k}>
-                  <p>{t.name}</p>
+                  <p className="eachTemperament">{t.name}</p>
                 </div>
               );
             })}
           </div>
-          <div>
+          <div className="table2">
             <h5>min_height: {breedDetails.min_height}</h5>
             <h5>max_height: {breedDetails.max_height}</h5>
             <h5>min_weight: {breedDetails.min_weight}</h5>

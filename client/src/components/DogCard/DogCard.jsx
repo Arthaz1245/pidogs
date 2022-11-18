@@ -11,19 +11,20 @@ export default function DogCard({
 }) {
   return (
     <div>
-      <Link to={`/home/${id}`}>
-        <div className="CarDog">
-          <h6>{name}</h6>
-          <img src={image} alt className="imgDog" />
-          <h6>Weight: </h6>
-          <div>
-            <p>
-              Min: {min_weight}/kg - Max: {max_weight}/kg
-            </p>
-          </div>
-          <h6>Temperament:</h6>
+      <Link to={`/home/${id}`} className="Linkt">
+        <div className="CardDog">
+          <img src={image} alt={"dd"} className="imgDog" />
+          <h6 className="Title">{name}</h6>
 
-          <h4>
+          <h6 className="labelt">Weight: </h6>
+
+          <p className="weightText">
+            Min: {min_weight}/kg - Max: {max_weight}/kg
+          </p>
+
+          <h6 className="labelt">Temperament:</h6>
+
+          <p className="styledTemp">
             {(function (temperaments) {
               if (typeof temperaments === "string") {
                 return temperaments;
@@ -33,7 +34,7 @@ export default function DogCard({
                 return temps.join(", ");
               }
             })(temperaments)}
-          </h4>
+          </p>
         </div>
       </Link>
     </div>

@@ -4,7 +4,7 @@ import "./Cards.css";
 import DogCard from "../DogCard/DogCard";
 export default function Cards({ currentBreeds }) {
   return (
-    <div>
+    <div className="recipeCards">
       {currentBreeds?.map((t, k) => {
         return (
           <div key={k}>

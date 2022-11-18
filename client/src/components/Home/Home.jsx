@@ -25,10 +25,10 @@ export default function Home() {
   }, [dispatch]);
   return (
     <div>
-      <h1>New Api</h1>
+      <h1>Dogggies</h1>
       <div>
-        <Link to={"/home/create"}>
-          <button>Create</button>
+        <Link to={"/create"}>
+          <button>Create Breed</button>
         </Link>
       </div>
       <Filters
