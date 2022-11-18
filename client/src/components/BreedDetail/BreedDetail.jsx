@@ -19,9 +19,11 @@ export default function BreedDetail(props) {
     <div>
       {Object.values(breedDetails).length !== 0 ? (
         <div className="cardDetail">
-          <h2>{breedDetails.name}</h2>
+          <h2 className="titleNameBreed">{breedDetails.name}</h2>
           <img src={breedDetails.image} className="cardImage" alt="" />
+
           <div className="allTemps">
+            <h5 className="h5tem">Temperaments</h5>
             {breedDetails.temperaments?.map((t, k) => {
               return (
                 <div key={k}>
@@ -40,7 +42,7 @@ export default function BreedDetail(props) {
           </div>
           <div>
             <Link to="/home">
-              <button>Go back</button>
+              <button className="bntGoBack">Go back</button>
             </Link>
           </div>
         </div>

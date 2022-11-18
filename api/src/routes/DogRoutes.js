@@ -1,7 +1,12 @@
 const { Router } = require("express");
 const router = Router();
 //const { Pokemon, Type } = require("../db");
-const { getAllBreeds, postBreed } = require("../Controllers/DogController");
+const {
+  getAllBreeds,
+  postBreed,
+  deleteBreed,
+  updateBreed,
+} = require("../Controllers/DogController");
 router.get("/", async (req, res) => {
   const { name } = req.query;
   let allBreed = await getAllBreeds();
@@ -33,7 +38,27 @@ router.get("/:id", async (req, res) => {
     console.log(error);
   }
 });
+// router.put("/:id", async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const data = req.body;
+//     const updatedBreed = await updateBreed(id, data);
+//     console.log(updatedBreed);
+//     res.status(200).json(updatedBreed);
+//   } catch (error) {
+//     res.status(404).json("Error to update the breed", error);
+//   }
+// });
 
+// router.delete("/:id", async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const deletedBreed = await deleteBreed(id);
+//     res.status(200).json(deletedBreed);
+//   } catch (error) {
+//     res.status(404).json("Error to delete breed", error);
+//   }
+// });
 router.post("/", async (req, res) => {
   try {
     const bodyInfo = req.body;
