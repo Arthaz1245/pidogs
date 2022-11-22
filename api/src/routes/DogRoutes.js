@@ -50,15 +50,15 @@ router.get("/:id", async (req, res) => {
 //   }
 // });
 
-// router.delete("/:id", async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const deletedBreed = await deleteBreed(id);
-//     res.status(200).json(deletedBreed);
-//   } catch (error) {
-//     res.status(404).json("Error to delete breed", error);
-//   }
-// });
+router.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedBreed = await deleteBreed(id);
+    res.status(200).json(deletedBreed);
+  } catch (error) {
+    res.status(404).json("Error to delete breed", error);
+  }
+});
 router.post("/", async (req, res) => {
   try {
     const bodyInfo = req.body;

@@ -1,8 +1,11 @@
 const { Dog, Temperament } = require("../db");
 const axios = require("axios");
+const { API_KEY } = process.env;
 const getApiInfo = async () => {
   try {
-    const apiurl = await axios.get("https://api.thedogapi.com/v1/breeds");
+    const apiurl = await axios.get(
+      `https://api.thedogapi.com/v1/breeds?apiKey=${API_KEY}`
+    );
     const BreedsApiInfo = apiurl.data.map((e) => {
       let weight = e.weight.metric.split("-");
       let height = e.height.metric.split("-");
@@ -59,6 +62,27 @@ const getAllBreeds = async () => {
   const totalInfo = apiInfo.concat(dbInfo);
   return totalInfo;
 };
+const deleteBreed = async (id) => {
+  try {
+    const deletedBreed = await Dog.findByPk(id);
+    await Dog.destroy({
+      where: { id: id },
+    });
+    return deletedBreed;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// const updateBreed = async (id, data) => {
+//   try {
+//     await Breed.update(data, {
+//       where: { id: id },
+//     });
+//   } catch (error) {
+//     console.log("Error in update Breed", error);
+//   }
+// };
 const postBreed = async (objBreed) => {
   try {
     const {
@@ -110,4 +134,5 @@ const postBreed = async (objBreed) => {
 module.exports = {
   getAllBreeds,
   postBreed,
+  deleteBreed,
 };
