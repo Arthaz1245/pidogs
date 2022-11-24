@@ -10,8 +10,9 @@ import {
   CLEAN_BREEDS_DETAILS,
   CREATE_NEW_BREED,
   ORDER_BY_WEIGHT,
+  DELETE_BREED,
 } from "../actions/actions";
-
+import swal from "sweetalert";
 const initialState = {
   breeds: [],
   allBreeds: [],
@@ -120,7 +121,9 @@ export default function rootReducer(state = initialState, action) {
       let copy = state.allBreeds;
       let createdFiltered;
       if (action.payload === "created") {
-        createdFiltered = copy.filter((e) => e.createdInDB);
+        let searchCreated = copy.filter((e) => e.createdInDB);
+        console.log(searchCreated);
+        createdFiltered = searchCreated;
       } else if (action.payload === "api") {
         createdFiltered = copy.filter((e) => !e.createdInDB);
       } else {
@@ -136,6 +139,15 @@ export default function rootReducer(state = initialState, action) {
         ...state,
       };
     }
+    case DELETE_BREED:
+      const allBreeds2 = state.allBreeds;
+      const deletedBreed = allBreeds2.filter(
+        (breed) => breed.id !== action.payload
+      );
+      return {
+        ...state,
+        breeds: deletedBreed,
+      };
     default: {
       return {
         ...state,

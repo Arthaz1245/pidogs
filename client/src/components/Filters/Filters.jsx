@@ -8,6 +8,7 @@ import {
   filterBreedsByTemperament,
   filterBreedsCreated,
   orderByWeight,
+  cleanBreeds,
 } from "../../actions";
 export default function Filters({ setCurrentPage, setOrder, order }) {
   const dispatch = useDispatch();
@@ -15,6 +16,12 @@ export default function Filters({ setCurrentPage, setOrder, order }) {
   useEffect(() => {
     dispatch(getAllTemperaments());
   }, [dispatch]);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    dispatch(cleanBreeds());
+    setCurrentPage(1);
+  };
   const handleOrderBreedsAlphabetically = (e) => {
     e.preventDefault();
     dispatch(orderBreedsAlphabetically(e.target.value));
@@ -105,6 +112,9 @@ export default function Filters({ setCurrentPage, setOrder, order }) {
         <option value="created">created</option>
         <option value="api">api</option>
       </select>
+      <button className="ReloadBtn" onClick={handleClick}>
+        Reload
+      </button>
     </div>
   );
 }

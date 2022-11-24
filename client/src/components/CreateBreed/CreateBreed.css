@@ -67,3 +67,34 @@ color: white;
     border-radius: 20px;
     margin :5px;
 }
+.bntSubmit{
+        color: rgb(72, 250, 7);
+            background-color: rgba(255, 255, 255, 0.941);
+            font-size: 17px;
+            height: 50px;
+            width: 200px;
+            text-align: center;
+            padding: 10px 25px;
+            margin: 15px;
+            font-weight: 500;
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            border-radius: 20px;
+            box-shadow: 3px 3px 5px 1px rgb(112, 44, 44);
+            cursor: pointer;
+        
+}
+.goMenuBtn{
+    color: rgb(253, 253, 246);
+        background-color: rgba(255, 10, 10, 0.941);
+        font-size: 17px;
+        height: 50px;
+        width: 200px;
+        text-align: center;
+        padding: 10px 25px;
+        margin: 15px;
+        font-weight: 500;
+        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+        border-radius: 20px;
+        box-shadow: 3px 3px 5px 1px rgb(112, 44, 44);
+        cursor: pointer;
+}

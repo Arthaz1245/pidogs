@@ -25,10 +25,10 @@ export default function Home() {
   }, [dispatch]);
   return (
     <div>
-      <h1>Dogggies</h1>
+      <h1 className="titleDoggies">Doggies</h1>
       <div>
         <Link to={"/create"}>
-          <button>Create Breed</button>
+          <button className="bntCreateBreed">Create Breed</button>
         </Link>
       </div>
       <Filters

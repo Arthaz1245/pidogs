@@ -1,4 +1,5 @@
 import axios from "axios";
+import swal from "sweetalert";
 import {
   GET_ALL_BREEDS,
   GET_ALL_TEMPERAMENTS,
@@ -10,6 +11,7 @@ import {
   GET_BREEDS_DETAILS,
   CLEAN_BREEDS_DETAILS,
   ORDER_BY_WEIGHT,
+  DELETE_BREED,
 } from "./actions";
 
 export function getAllBreeds() {
@@ -59,12 +61,19 @@ export function getAllTemperaments() {
 export function getBreedByName(name) {
   return async function (dispatch) {
     try {
-      var json = await axios.get(`http://localhost:3001/dogs?name=${name}`);
-      return dispatch({
-        type: GET_BREED_BY_NAME,
-        payload: json.data,
-      });
+      const breedByName = await axios.get(
+        `http://localhost:3001/dogs?name=${name}`
+      );
+      if (breedByName.data.length) {
+        return dispatch({
+          type: GET_BREED_BY_NAME,
+          payload: breedByName.data,
+        });
+      } else {
+        await swal("Breed Not Found", "The breed does not exist", "error");
+      }
     } catch (error) {
+      await swal("Breed Not Found", "The breed does not exist", "error");
       console.log(error);
     }
   };
@@ -93,24 +102,38 @@ export function createNewBreed(payload) {
     }
   };
 }
-//export function getPokemonDetails(id) {
+// export function deleteBreed(id) {
 //   return function (dispatch) {
 //     axios
-//       .get(`http://localhost:3001/pokemons/${id}`)
+//       .delete(`http://localhost:3001/dogs/${id}`)
 //       .then((res) => res.data)
 //       .then((res) =>
 //         dispatch({
-//           type: GET_POKEMON_DETAILS,
-//           payload: res,
-//         }).catch((err) => console.log(err))
+//           type: DELETE_BREED,
+//           payload: res.id,
+//         })
 //       );
 //   };
 // }
-export function cleanBreeds(dispatch) {
-  return dispatch({
+export function deleteBreed(id) {
+  return async function (dispatch) {
+    try {
+      const breedId = await axios.delete(`http://localhost:3001/dogs/${id}`);
+      return dispatch({
+        type: DELETE_BREED,
+        payload: breedId.data.id,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function cleanBreeds() {
+  return {
     type: CLEAN_BREEDS,
     payload: [],
-  });
+  };
 }
 export function cleanBreedDetails(dispatch) {
   return dispatch({

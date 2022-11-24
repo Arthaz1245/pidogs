@@ -34,7 +34,9 @@ export default function SearchBar() {
           }}
           value={name}
         />
-        <button type="submit">Search</button>
+        <button type="submit" className="btnSubmit">
+          Search
+        </button>
       </form>
     </div>
   );

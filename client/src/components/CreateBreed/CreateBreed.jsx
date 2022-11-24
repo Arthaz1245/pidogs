@@ -7,7 +7,8 @@ import { getAllTemperaments, createNewBreed, cleanBreeds } from "../../actions";
 export default function CreateBreed() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const temperaments = useSelector((state) => state.temperaments);
+  const allBreeds = useSelector((state) => state.breeds);
+  const breedTemperaments = useSelector((state) => state.temperaments);
   const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
     name: "",
@@ -21,7 +22,7 @@ export default function CreateBreed() {
     temperaments: [],
   });
 
-  let validateName = /^[a-zA-Z0-9\s]+$/;
+  let validateName = /^[A-Za-z.-]+(\s*[A-Za-z.-]+)*$/;
   let validateNum = /^\d+$/;
   let validateUrl = /^(ftp|http|https):\/\/[^ "]+$/;
 
@@ -29,12 +30,18 @@ export default function CreateBreed() {
     let errors = {};
     if (!input.name) {
       errors.name = "The name must be provided ";
-    } else if (validateName.test(input.name)) {
+    } else if (!validateName.test(input.name)) {
       errors.name = "Not a valid name";
     } else if (input.name.length < 2) {
       errors.name = "The name must have more than one character";
     } else if (input.name.length > 30) {
       errors.name = "The breed has too many characters";
+    } else if (
+      allBreeds.find((e) =>
+        e.name.toLowerCase().trim().includes(input.name.toLowerCase().trim())
+      )
+    ) {
+      errors.name = "The breed already exists";
     }
     if (!validateUrl.test(input.img)) {
       errors.image = "URL  for the image required";
@@ -83,12 +90,15 @@ export default function CreateBreed() {
     }
 
     if (
-      !validateNum.test(input.max_weight) ||
+      !validateNum.test(input.max_lifespan) ||
       parseInt(input.max_lifespan) < parseInt(input.min_lifespan)
     ) {
       errors.max_lifespan =
         "The lifespan is required. The max lifespan should be higher than min lifespan.";
+    } else if (input.temperaments.length < 1) {
+      errors.temperaments = "At least one temperament should be select ";
     }
+
     return errors;
   }
   const handleChange = (e) => {
@@ -107,8 +117,14 @@ export default function CreateBreed() {
   const handleSelectTemperaments = (e) => {
     setInput({
       ...input,
-      temperaments: [...input.temperaments, e.target.value],
+      temperaments: [...new Set([...input.temperaments, e.target.value])],
     });
+    setErrors(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
   };
   const handleDelete = (e) => {
     setInput({
@@ -142,6 +158,7 @@ export default function CreateBreed() {
         temperaments: [],
       });
       dispatch(cleanBreeds(dispatch));
+      alert("Breed created successfully");
       history.push("/home");
     } else {
       alert("Error. You need to verify your form");
@@ -153,7 +170,7 @@ export default function CreateBreed() {
   return (
     <div>
       <Link to="/home">
-        <button>Main Menu</button>
+        <button className="goMenuBtn">Main Menu</button>
       </Link>
       <div className="containerForm">
         <form className="Finalform " onSubmit={(e) => handleSubmit(e)}>
@@ -209,7 +226,7 @@ export default function CreateBreed() {
               />
               {errors.max_height && <p>{errors.max_height}</p>}
               <label htmlFor="" className="labelForm">
-                Max Weight:{" "}
+                Min Weight:{" "}
               </label>
               <input
                 name="min_weight"
@@ -264,7 +281,7 @@ export default function CreateBreed() {
               >
                 <option>Select a temperament</option>
 
-                {temperaments?.map((temperament) => {
+                {breedTemperaments?.map((temperament) => {
                   return (
                     <option value={temperament.name} key={temperament.id}>
                       {temperament.name.toLowerCase()}
@@ -272,6 +289,7 @@ export default function CreateBreed() {
                   );
                 })}
               </select>
+
               <div className="Divtemperaments">
                 {
                   input.temperaments.map((temperament) => {
@@ -291,9 +309,12 @@ export default function CreateBreed() {
                   }) //para poder ver que fui seleccionando
                 }
               </div>
+              {errors.temperaments && <p>{errors.temperaments}</p>}
             </div>
           </div>
-          <button type="submit">Create</button>
+          <button type="submit" className="bntSubmit">
+            Create
+          </button>
         </form>
       </div>
     </div>

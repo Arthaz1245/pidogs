@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const router = Router();
-//const { Pokemon, Type } = require("../db");
+
 const {
   getAllBreeds,
   postBreed,
