@@ -12,8 +12,14 @@ import {
   CLEAN_BREEDS_DETAILS,
   ORDER_BY_WEIGHT,
   DELETE_BREED,
+  LOADING,
 } from "./actions";
 
+export function loading() {
+  return {
+    type: LOADING,
+  };
+}
 export function getAllBreeds() {
   return async function (dispatch) {
     try {
@@ -129,11 +135,11 @@ export function deleteBreed(id) {
   };
 }
 
-export function cleanBreeds() {
-  return {
+export function cleanBreeds(dispatch) {
+  return dispatch({
     type: CLEAN_BREEDS,
     payload: [],
-  };
+  });
 }
 export function cleanBreedDetails(dispatch) {
   return dispatch({

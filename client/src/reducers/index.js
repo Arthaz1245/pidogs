@@ -11,13 +11,15 @@ import {
   CREATE_NEW_BREED,
   ORDER_BY_WEIGHT,
   DELETE_BREED,
+  LOADING,
 } from "../actions/actions";
-import swal from "sweetalert";
+
 const initialState = {
   breeds: [],
   allBreeds: [],
   temperaments: [],
   breedDetails: [],
+  loading: true,
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -111,7 +113,7 @@ export default function rootReducer(state = initialState, action) {
               }
               return true;
             });
-      console.log(allBreeds[0].temperaments[0].name);
+
       return {
         ...state,
         breeds: filteredBreeds,
@@ -122,6 +124,7 @@ export default function rootReducer(state = initialState, action) {
       let createdFiltered;
       if (action.payload === "created") {
         let searchCreated = copy.filter((e) => e.createdInDB);
+
         console.log(searchCreated);
         createdFiltered = searchCreated;
       } else if (action.payload === "api") {
@@ -139,6 +142,10 @@ export default function rootReducer(state = initialState, action) {
         ...state,
       };
     }
+    case LOADING:
+      return {
+        loading: true,
+      };
     case DELETE_BREED:
       const allBreeds2 = state.allBreeds;
       const deletedBreed = allBreeds2.filter(

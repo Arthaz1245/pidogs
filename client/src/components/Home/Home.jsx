@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllBreeds } from "../../actions/index";
+import { getAllBreeds, getAllTemperaments } from "../../actions/index";
 import { Link } from "react-router-dom";
 import Cards from "../Cards/Cards";
 import Filters from "../Filters/Filters";
@@ -21,8 +21,11 @@ export default function Home() {
   };
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllBreeds());
-  }, [dispatch]);
+    if (currentBreeds.length === 0) {
+      dispatch(getAllBreeds());
+      dispatch(getAllTemperaments());
+    }
+  }, [dispatch, currentBreeds]);
   return (
     <div>
       <h1 className="titleDoggies">Doggies</h1>

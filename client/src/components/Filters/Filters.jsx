@@ -17,11 +17,6 @@ export default function Filters({ setCurrentPage, setOrder, order }) {
     dispatch(getAllTemperaments());
   }, [dispatch]);
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    dispatch(cleanBreeds());
-    setCurrentPage(1);
-  };
   const handleOrderBreedsAlphabetically = (e) => {
     e.preventDefault();
     dispatch(orderBreedsAlphabetically(e.target.value));
@@ -112,9 +107,6 @@ export default function Filters({ setCurrentPage, setOrder, order }) {
         <option value="created">created</option>
         <option value="api">api</option>
       </select>
-      <button className="ReloadBtn" onClick={handleClick}>
-        Reload
-      </button>
     </div>
   );
 }

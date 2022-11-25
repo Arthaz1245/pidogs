@@ -21,8 +21,8 @@ export default function DogCard({
   // }, [dispatch, id]);
   const handleDelete = (e) => {
     e.preventDefault();
-    dispatch(deleteBreed(id));
     dispatch(cleanBreeds(dispatch));
+    dispatch(deleteBreed(id));
   };
 
   return (

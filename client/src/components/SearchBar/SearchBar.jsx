@@ -2,7 +2,7 @@ import React from "react";
 import "./SearchBar.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getBreedByName, cleanBreeds } from "../../actions";
+import { getBreedByName } from "../../actions";
 export default function SearchBar() {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
@@ -13,7 +13,7 @@ export default function SearchBar() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(cleanBreeds(dispatch));
+    //dispatch(cleanBreeds(dispatch));
     dispatch(getBreedByName(name));
     setName("");
   };
