@@ -44,6 +44,7 @@ export default function Home() {
         allBreeds={allBreeds.length}
         paginate={paginated}
         currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
       />
       <Cards currentBreeds={currentBreeds} />
     </div>

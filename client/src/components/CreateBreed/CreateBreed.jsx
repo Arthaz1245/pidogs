@@ -3,7 +3,7 @@ import "./CreateBreed.css";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllTemperaments, createNewBreed, cleanBreeds } from "../../actions";
-
+import swal from "sweetalert";
 export default function CreateBreed() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -21,14 +21,17 @@ export default function CreateBreed() {
     image: "",
     temperaments: [],
   });
+  useEffect(() => {
+    dispatch(getAllTemperaments());
+  }, [dispatch]);
 
   let validateName = /^[A-Za-z.-]+(\s*[A-Za-z.-]+)*$/;
   let validateNum = /^\d+$/;
-  let validateUrl = /^(ftp|http|https):\/\/[^ "]+$/;
+  let validateUrl = /(http(s?):)([/|.|\w|\s|-])*.(?:jpg|gif|png)/;
 
   function validate(input) {
     let errors = {};
-    if (!input.name) {
+    if (!input.name.trim()) {
       errors.name = "The name must be provided ";
     } else if (!validateName.test(input.name)) {
       errors.name = "Not a valid name";
@@ -43,7 +46,7 @@ export default function CreateBreed() {
     ) {
       errors.name = "The breed already exists";
     }
-    if (!validateUrl.test(input.img)) {
+    if (!validateUrl.test(input.image)) {
       errors.image = "URL  for the image required";
     }
     if (
@@ -132,20 +135,15 @@ export default function CreateBreed() {
       temperaments: input.temperaments.filter((temp) => temp !== e),
     });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (
-      !errors.name &&
-      !errors.min_height &&
-      !errors.max_height &&
-      !errors.min_weight &&
-      !errors.max_weight &&
-      !errors.min_lifespan &&
-      !errors.max_lifespan &&
-      !errors.temperaments
-    ) {
+    setErrors(validate(input));
+    let error = validate(input);
+    if (Object.values(error).length !== 0) {
+    } else {
       dispatch(createNewBreed(input));
+      await swal("Breed created successfully");
+
       setInput({
         name: "",
         min_height: "",
@@ -157,16 +155,11 @@ export default function CreateBreed() {
         image: "",
         temperaments: [],
       });
-      dispatch(cleanBreeds(dispatch));
-      alert("Breed created successfully");
       history.push("/home");
-    } else {
-      alert("Error. You need to verify your form");
+      dispatch(cleanBreeds(dispatch));
     }
   };
-  useEffect(() => {
-    dispatch(getAllTemperaments());
-  }, [dispatch]);
+
   return (
     <div>
       <Link to="/home">
@@ -196,11 +189,11 @@ export default function CreateBreed() {
                 name="image"
                 type="text"
                 className="inputForm"
-                value={input.img}
+                value={input.image}
                 placeholder="Image of the breed"
                 onChange={(e) => handleChange(e)}
               />
-              {errors.image && <p>{errors.img}</p>}
+              {errors.image && <p>{errors.image}</p>}
               <label htmlFor="" className="labelForm">
                 Min Height:{" "}
               </label>
@@ -261,6 +254,7 @@ export default function CreateBreed() {
                 onChange={(e) => handleChange(e)}
               />
               {errors.min_lifespan && <p>{errors.min_lifespan}</p>}
+
               <label htmlFor="" className="labelForm">
                 Max Lifespan:{" "}
               </label>

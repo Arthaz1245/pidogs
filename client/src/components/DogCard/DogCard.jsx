@@ -52,7 +52,9 @@ export default function DogCard({
                 }
               })(temperaments)}
             </p>
-            <button onClick={(e) => handleDelete(e)}>Delete</button>
+            <button className="deleteCard" onClick={(e) => handleDelete(e)}>
+              Delete
+            </button>
           </div>
         </Link>
       ) : (
