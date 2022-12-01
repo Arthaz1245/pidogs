@@ -39,17 +39,17 @@ router.get("/:id", async (req, res) => {
     console.log(error);
   }
 });
-// router.put("/:id", async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const data = req.body;
-//     const updatedBreed = await updateBreed(id, data);
-//     console.log(updatedBreed);
-//     res.status(200).json(updatedBreed);
-//   } catch (error) {
-//     res.status(404).json("Error to update the breed", error);
-//   }
-// });
+router.put("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const data = req.body;
+    const updatedBreed = await updateBreed(id, data);
+    console.log(updatedBreed);
+    res.status(200).json(updatedBreed);
+  } catch (error) {
+    res.status(404).json("Error to update the breed", error);
+  }
+});
 
 router.delete("/:id", async (req, res) => {
   try {

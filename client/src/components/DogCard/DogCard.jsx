@@ -55,6 +55,9 @@ export default function DogCard({
             <button className="deleteCard" onClick={(e) => handleDelete(e)}>
               Delete
             </button>
+            <Link to={`/update/${id}`}>
+              <button className="modifyCard">Modify</button>
+            </Link>
           </div>
         </Link>
       ) : (

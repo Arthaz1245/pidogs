@@ -12,6 +12,7 @@ import {
   ORDER_BY_WEIGHT,
   DELETE_BREED,
   LOADING,
+  UPDATE_BREED,
 } from "../actions/actions";
 
 const initialState = {
@@ -154,6 +155,10 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         breeds: deletedBreed,
+      };
+    case UPDATE_BREED:
+      return {
+        ...state,
       };
     default: {
       return {

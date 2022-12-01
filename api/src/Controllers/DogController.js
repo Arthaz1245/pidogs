@@ -74,15 +74,15 @@ const deleteBreed = async (id) => {
   }
 };
 
-// const updateBreed = async (id, data) => {
-//   try {
-//     await Breed.update(data, {
-//       where: { id: id },
-//     });
-//   } catch (error) {
-//     console.log("Error in update Breed", error);
-//   }
-// };
+const updateBreed = async (id, data) => {
+  try {
+    await Dog.update(data, {
+      where: { id: id },
+    });
+  } catch (error) {
+    console.log("Error in update Breed", error);
+  }
+};
 const postBreed = async (objBreed) => {
   try {
     const {
@@ -135,4 +135,5 @@ module.exports = {
   getAllBreeds,
   postBreed,
   deleteBreed,
+  updateBreed,
 };

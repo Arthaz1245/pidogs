@@ -11,3 +11,4 @@ export const CREATE_NEW_BREED = "CREATE_NEW_BREED";
 export const ORDER_BY_WEIGHT = "ORDER_BY_WEIGHT";
 export const DELETE_BREED = "DELETE_BREED";
 export const LOADING = "LOADING";
+export const UPDATE_BREED = "UPDATE_BREED";

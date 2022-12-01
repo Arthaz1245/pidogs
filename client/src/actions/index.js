@@ -13,6 +13,7 @@ import {
   ORDER_BY_WEIGHT,
   DELETE_BREED,
   LOADING,
+  UPDATE_BREED,
 } from "./actions";
 
 export function loading() {
@@ -121,12 +122,29 @@ export function createNewBreed(payload) {
 //       );
 //   };
 // }
+
 export function deleteBreed(id) {
   return async function (dispatch) {
     try {
       const breedId = await axios.delete(`http://localhost:3001/dogs/${id}`);
       return dispatch({
         type: DELETE_BREED,
+        payload: breedId.data.id,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+export function updateBreed(id, payload) {
+  return async function (dispatch) {
+    try {
+      const breedId = await axios.put(
+        `http://localhost:3001/dogs/${id}`,
+        payload
+      );
+      return dispatch({
+        type: UPDATE_BREED,
         payload: breedId.data.id,
       });
     } catch (error) {

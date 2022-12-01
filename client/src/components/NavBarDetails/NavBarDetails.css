@@ -1,0 +1,43 @@
+.header {
+    display: flex;
+    background-color: rgba(0, 156, 140, 0.765);
+    margin-bottom: 20px;
+    height: 56px;
+    padding: 0 2rem;
+    align-items: center;
+    box-shadow: 0rem 0.1875rem 0.375rem rgb(68, 63, 53);
+    background-attachment: fixed;
+}
+
+
+.divButtonBack {
+    margin-left: -1rem;
+}
+
+.buttonBack {
+    min-width: 100px;
+    height: 27px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 20px;
+    border: none;
+    background: rgba(255, 236, 236, 0.8);
+}
+
+.buttonBack:hover {
+    background-color: rgb(255, 255, 255);
+    color: black;
+}
+
+
+.bntGoBack:hover {
+    background-color: rgba(23, 216, 165, 0.849);
+    color: rgba(255, 255, 255, 0.721)
+}
+
+.img {
+    margin-top: 1px;
+    margin-right: 5px;
+}
