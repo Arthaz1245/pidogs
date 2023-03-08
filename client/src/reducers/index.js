@@ -58,7 +58,7 @@ export default function rootReducer(state = initialState, action) {
     case CLEAN_BREEDS: {
       return {
         ...state,
-        breeds: action.payload,
+        allBreeds: action.payload,
       };
     }
     case ORDER_BY_WEIGHT: {
